@@ -1,0 +1,5 @@
+/node_modules
+/dist
+/storybook-static
+.firebase
+/stories/components/custom/Tests
