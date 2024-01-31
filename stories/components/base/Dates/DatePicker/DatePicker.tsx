@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "@emotion/styled"
-import { DatePicker as DatePickerBase, DatePickerBaseProps, DatePickerProps, DatePickerType } from "@mantine/dates"
+import { DatePicker as DatePickerBase, DatePickerBaseProps, DatePickerProps, DatePickerType, DatesProvider, DayOfWeek } from "@mantine/dates"
 
 export interface DatePickerComponentProps extends DatePickerBaseProps {}
 
@@ -10,11 +10,15 @@ const DatePickerStyled = styled(DatePickerBase)`
   .mantine-DatePicker-day {
     color: #282e38;
     border-radius: 32px;
+    margin: 0px;
+
     :hover {
       border: 1px solid #003396;
       background-color: white;
     }
-    margin: 0px;
+    :disabled {
+      color: #adb5bd;
+    }
   }
 
   .mantine-DatePicker-day[data-selected="true"] {
@@ -30,18 +34,16 @@ const DatePickerStyled = styled(DatePickerBase)`
 
   .mantine-DatePicker-day[data-first-in-range="true"] {
     color: white;
-    background-color: #003396;
-    border-radius: 32px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    background-image: url('data:image/svg+xml,<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" fill="%231E1E1E"/><rect x="17.122" width="18.878" height="36" fill="%23D9E0ED"/><rect width="18.878" height="36" fill="white"/><circle cx="18" cy="18" r="18" fill="%23003396"/></svg>');
+    background-size: auto;
+    background-repeat: no-repeat;
   }
 
   .mantine-DatePicker-day[data-last-in-range="true"] {
     color: white;
-    background-color: #003396;
-    border-radius: 32px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    background-image: url('data:image/svg+xml,<svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="36" height="36" fill="%231E1E1E"/><rect x="18.878" y="36" width="18.878" height="36" transform="rotate(-180 18.878 36)" fill="%23D9E0ED"/><rect x="36" y="36" width="18.878" height="36" transform="rotate(-180 36 36)" fill="white"/><circle cx="18" cy="18" r="18" transform="rotate(-180 18 18)" fill="%23003396"/></svg>');
+    background-size: auto;
+    background-repeat: no-repeat;
   }
 
   .mantine-DatePicker-calendarHeaderControlIcon {
@@ -69,9 +71,5 @@ const DatePickerStyled = styled(DatePickerBase)`
 `
 
 export const DatePicker = ({ type, ...props }: DatePickerComponentProps) => {
-  return (
-    <>
-      <DatePickerStyled type={type} firstDayOfWeek={0} hideOutsideDates={true} withCellSpacing={false} {...props} />
-    </>
-  )
+  return <DatePickerStyled {...props} type={type} firstDayOfWeek={0} hideOutsideDates={true} withCellSpacing={false} />
 }
